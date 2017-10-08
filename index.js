@@ -3,7 +3,7 @@ var path = require("path");
 
 module.exports = function(source) {
   this.cacheable();
-  var regex = /.?import + ?((\w+) +from )?([\'\"])(.*?)\3/gm;
+  var regex = /.?import + ?((\w+) from )?([\'\"])(.*?)\3/gm;
   var importModules = /import +(\w+) +from +([\'\"])(.*?)\2/gm;
   var importFiles = /import +([\'\"])(.*?)\1/gm;
   var importSass = /@import +([\'\"])(.*?)\1/gm;
@@ -18,11 +18,12 @@ module.exports = function(source) {
       })
       .map(function(file, index) {
         var fileName = quote + file + quote;
+		var basename = path.normalize(file);
         if (match.match(importSass)) {
           return '@import ' + fileName;
         } else if (match.match(importModules)) {
           var moduleName = obj + index;
-          modules.push(moduleName);
+          modules.push(quote + basename + quote + ': ' + moduleName);
           withModules = true;
           return 'import * as ' + moduleName + ' from ' + fileName;
         } else if (match.match(importFiles)) {
@@ -31,8 +32,9 @@ module.exports = function(source) {
       })
       .join('; ');
     if (result && withModules) {
-      result += '; let ' + obj + ' = [' + modules.join(', ') + ']';
+      result += '; let ' + obj + ' = {' + modules.join(', ') + '}';
     }
+
     return result;
   }
   var res = source.replace(regex, replacer);
