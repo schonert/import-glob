@@ -1,8 +1,6 @@
 > This is basicly a copy paste from [https://github.com/terpiljenya/import-glob](https://github.com/terpiljenya/import-glob). Modified it to return an object instead of an array.
 
-[![Build Status](https://travis-ci.org/terpiljenya/import-glob.svg)](https://travis-ci.org/terpiljenya/import-glob)
-[![npm version](https://badge.fury.io/js/import-glob.svg)](https://badge.fury.io/js/import-glob)
-# import-glob
+# import-glob-object
 ES6 import with glob patterns (preloader for Webpack)
 
 Expands globbing patterns for ES6 `import` statements.
