@@ -1,5 +1,5 @@
 {
-  "name": "import-glob",
+  "name": "import-glob-object",
   "version": "1.5.0",
   "description": "ES6 import with glob patterns (preloader for Webpack)",
   "license": "MIT",
@@ -28,6 +28,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/terpiljenya/import-glob"
+    "url": "git+https://github.com/sschonert/import-glob-object"
   }
 }
